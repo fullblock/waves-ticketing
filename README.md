@@ -37,14 +37,14 @@ The store address is hard coded for prototyping purposes.
 ### use of https
 
 To download from private repo when 2fa is not enabled:
-- git clone https://`username`:`password`@github.com/jorisadri/waves-ticketing
+- git clone https://`username`:`password`@github.com/fullblock/waves-ticketing
 
 When 2fa is enabled (https://github.com/settings/tokens)
-- https://`personal-access-token`@github.com/jorisadri/waves-ticketing
+- https://`personal-access-token`@github.com/fullblock/waves-ticketing
 
 ### use of ssh
 
-- git clone ssh://git@github.com/jorisadri/waves-ticketing.git
+- git clone ssh://git@github.com/fullblock/waves-ticketing.git
 
 ## Development
 
