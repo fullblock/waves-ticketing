@@ -1,0 +1,69 @@
+{
+  "name": "waves-ticketing",
+  "version": "0.1.0",
+  "description": "Waves white label ticketing solution",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "watch": "webpack --watch",
+    "start-dev": "webpack-dev-server --open --mode development",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorisadri/waves-ticketing.git"
+  },
+  "keywords": [
+    "blockchain",
+    "waves",
+    "dapp",
+    "ticketing",
+    "marketplace"
+  ],
+  "author": "István Deák & Joris Huybrechts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jorisadri/waves-ticketing/issues"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "@waves/ts-lib-crypto": "0.0.2",
+    "waves-crypto": "^1.0.39",
+    "@waves/waves-transactions": "^3.12.2",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "randomstring": "^1.1.5",
+    "bs58": "^4.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "reactjs-popup": "^1.4.1",
+    "semantic-ui-react": "^0.87.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/runtime-corejs2": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "cross-env": "^5.2.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
+    "concurrently": "^4.1.1",
+    "css-loader": "^3.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "homepage": "https://github.com/jorisadri/waves-ticketing#readme"
+}

@@ -1,0 +1,44 @@
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE DAPP #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+
+@Callable(i)
+func buyTicket(ticketId: String, amount: Int) = {
+    
+    let payment = value(i.payment)
+    let ticketInfoOp = assetInfo(fromBase58String(ticketId))
+    let ticketInfo = value(ticketInfoOp)
+
+     #get heights in which between the tickets can be bought
+    let startHeight = match (getInteger(ticketInfo.issuer,"start")){
+            case x: Unit => 0
+            case x: Int => x
+    }
+    let stopHeight = match (getInteger(ticketInfo.issuer,"end")){
+            case x: Unit => 0
+            case x: Int => x
+    }
+
+    if (isDefined(payment.assetId)) then throw("only waves for now")
+    #when start and stop height are not set do not consider heights
+    else if((startHeight + stopHeight) > 0 && (startHeight > height || stopHeight < height)) then throw("you can only by a ticket between block: " + toString(startHeight) + " and " + toString(stopHeight))
+    else {
+        #get price from key-value pair stored in ticketAccount
+        let price = getIntegerValue(ticketInfo.issuer,"price") 
+       
+        if(price * amount != payment.amount ) then throw("Not the correct price. The price for " + toString(amount) + " tickets = " + toString(price * amount) + ". You are paying: " + toString(payment.amount))  
+        else { 
+            #transfer eventToken to the fuction caller address      
+            TransferSet([ScriptTransfer(i.caller,amount, fromBase58String(ticketId) )])
+         }
+    }
+}
+
+# @Verifier(tx)
+# func verify() = {
+#         match tx {
+#               TODO add verifier logic      
+#               case _ => false
+#         }
+
+# }

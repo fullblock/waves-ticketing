@@ -1,0 +1,21 @@
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE EXPRESSION #-}
+{-# SCRIPT_TYPE ASSET #-}
+
+
+match tx {
+    case tx: TransferTransaction =>
+        tx.sender == this.issuer || tx.sender == addressFromString(getStringValue(this.issuer, "approvedSender"))
+    case mtx: MassTransferTransaction =>
+        mtx.sender == this.issuer || mtx.sender == addressFromString(getStringValue(this.issuer, "approvedSender"))
+    case etx: ExchangeTransaction =>
+        if(etx.amount != 1) 
+            then throw("can only exchange 1 at a time")
+        else {
+                #only waves for now
+                let allowedTradePair = AssetPair(this.id, unit)
+                let maxResellPrice = value(getIntegerValue(this.issuer, "maxResellPrice"))
+                etx.buyOrder.assetPair == allowedTradePair && etx.price <= maxResellPrice
+            }
+    case _ => false
+}
